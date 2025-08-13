@@ -42,6 +42,9 @@
                 <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                 <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                 <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                <a class="nav-link" href="{{ route('data.mapper.examples') }}">
+                    <i class="bi bi-magic"></i> Data Mappers
+                </a>
                 <a class="nav-link" href="/api/stats" target="_blank">API Stats</a>
             </div>
         </div>
@@ -208,6 +211,60 @@
     'Products' => ['query' => Product::where('active', true), 'columns' => ['name', 'price']],
     'Orders' => ['query' => Order::with('user'), 'columns' => ['order_number', 'total']]
 ], 'multi-report.xlsx');</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Mapper Examples (NEW!) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card export-card" style="background: #f0f8ff; border-left: 4px solid #007bff;">
+                    <div class="card-header">
+                        <h4><i class="bi bi-magic"></i> Data Mapper Examples 🎯 NEW!</h4>
+                        <small class="text-muted">Transform complex data row-by-row during streaming - Memory efficient & flexible</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <i class="bi bi-lightbulb"></i>
+                            <strong>Game Changer:</strong> Data mappers let you apply complex transformations, calculations, and formatting during streaming without memory bloat!
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>🚀 Explore Data Mappers</h6>
+                                <a href="{{ route('data.mapper.examples') }}" class="btn btn-primary export-btn mb-2">
+                                    <i class="bi bi-compass"></i> View All Examples & Documentation
+                                </a>
+                                <small class="d-block text-muted">Interactive examples with live code and download links</small>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>💰 Quick Tests</h6>
+                                <a href="{{ route('export.orders.financial.report', ['format' => 'csv']) }}" class="btn btn-success export-btn">
+                                    <i class="bi bi-calculator"></i> Financial Report (CSV)
+                                </a>
+                                <a href="{{ route('export.customer.summary', ['format' => 'xlsx']) }}" class="btn btn-primary export-btn">
+                                    <i class="bi bi-people"></i> Customer Summary (XLSX)
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="bg-light p-3 rounded">
+                                    <h6><i class="bi bi-code-square"></i> Data Mapper Example:</h6>
+                                    <pre class="small mb-0"><code>$exporter->streamFromQuery(
+    $query, $headers, $filename, ['format' => 'csv'],
+    function($record) {
+        return [
+            $record->name,
+            number_format($record->calculateTotal(), 2),
+            $record->relationship->field,
+            // Complex transformations here!
+        ];
+    }
+);</code></pre>
                                 </div>
                             </div>
                         </div>

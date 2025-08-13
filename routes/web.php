@@ -73,3 +73,43 @@ Route::get('test/export/products/{category?}', function ($category = 'Electronic
 Route::get('test/memory', function () {
     return redirect()->route('export.large.dataset');
 })->name('test.memory');
+
+// =============================================
+// DATA MAPPER EXAMPLES (NEW FEATURE!)
+// =============================================
+
+// Data Mapper Examples Page
+Route::get('data-mapper-examples', [TestExportController::class, 'showDataMapperExamples'])
+     ->name('data.mapper.examples');
+
+// Data Mapper Export Routes
+Route::prefix('export')->name('export.')->group(function () {
+    
+    // Financial Report with Complex Calculations
+    Route::get('orders-financial-report', [TestExportController::class, 'exportOrdersFinancialReport'])
+         ->name('orders.financial.report');
+    
+    // Customer Summary with Aggregated Data  
+    Route::get('customer-summary', [TestExportController::class, 'exportCustomerSummary'])
+         ->name('customer.summary');
+    
+    // Customer Summary Test (200 records) for Fast Debugging
+    Route::get('customer-summary-test', [TestExportController::class, 'exportCustomerSummaryTest'])
+         ->name('customer.summary.test');
+    
+    // Product Performance with Sales Metrics
+    Route::get('product-performance', [TestExportController::class, 'exportProductPerformance'])
+         ->name('product.performance');
+    
+    // Error Handling Demonstration
+    Route::get('error-handling-demo', [TestExportController::class, 'exportErrorHandlingDemo'])
+         ->name('error.handling.demo');
+    
+    // Orders with Item Details (Complex Nested Data)
+    Route::get('orders-with-item-details', [TestExportController::class, 'exportOrdersWithItemDetails'])
+         ->name('orders.item.details');
+    
+    // User Activity Report
+    Route::get('user-activity-report', [TestExportController::class, 'exportUserActivityReport'])
+         ->name('user.activity.report');
+});
